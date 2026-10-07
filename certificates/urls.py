@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (
     CertificateGenerationView,
     GenerationJobDetailView,
-    JobCertificatesView
+    JobCertificatesView,
+    CertificateDetailView
 )
 
 urlpatterns = [
@@ -24,5 +25,10 @@ urlpatterns = [
         'jobs/<int:job_id>/certificates/',
         JobCertificatesView.as_view(),
         name='job-certificates'
+    ),
+    path(
+    'certificates/<int:certificate_id>/',
+    CertificateDetailView.as_view(),
+    name='certificate-detail'
     ),
 ]

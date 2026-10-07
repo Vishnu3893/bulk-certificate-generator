@@ -195,3 +195,34 @@ class JobCertificatesView(APIView):
             serializer.data,
             status=status.HTTP_200_OK
         )
+class CertificateDetailView(APIView):
+
+    def get(self, request, certificate_id):
+
+        try:
+
+            certificate = Certificate.objects.get(
+                id=certificate_id
+            )
+
+        except Certificate.DoesNotExist:
+
+            return Response(
+                {
+                    "error": "Certificate not found"
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        serializer = CertificateSerializer(
+            certificate
+        )
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )        
+        
+        
+        
+        
